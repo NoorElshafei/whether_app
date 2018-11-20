@@ -20,16 +20,26 @@ import java.util.List;
  * Created by Elshafie on 11/19/2018.
  */
 
-//connection with api and get all information about current whether from it
+//connection with api and get all information about 5 days forecast whether from it
 
-public abstract class WhetherGetterTask extends AsyncTask<Void, Void, List<WhetherResult>> {
+
+public abstract class ForcastGetterTask extends AsyncTask<Void, Void, List<WhetherResult>> {
+
+    int id;
+
+    public ForcastGetterTask(int id) {
+        this.id = id;
+    }
+
     @Override
     protected List<WhetherResult> doInBackground(Void... voids) {
+
+
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
         try {
-            //connection with link of json code
-            URL url = new URL("http://api.openweathermap.org/data/2.5/group?id=524901,703448,2643743,360630,4379545&APPID=1252f97507d10d0c319b69c793d16c3d");
+            //connection with link of json code,but this id depend on which button user click on it to open match city
+            URL url = new URL("http://api.openweathermap.org/data/2.5/forecast?id=" + id + "&APPID=1252f97507d10d0c319b69c793d16c3d");
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("GET");
             urlConnection.connect();
@@ -74,6 +84,7 @@ public abstract class WhetherGetterTask extends AsyncTask<Void, Void, List<Wheth
         }
     }
 
+
     private List<WhetherResult> parseMovies(String response) throws Exception {
         //get all information from jason code after connection
 
@@ -82,17 +93,17 @@ public abstract class WhetherGetterTask extends AsyncTask<Void, Void, List<Wheth
 
         JSONObject rootObject = new JSONObject(response);
 
+
         JSONArray listJsonArray = rootObject.getJSONArray("list");
         for (int i = 0; i < listJsonArray.length(); i++) {
             JSONObject listJsonObject = listJsonArray.getJSONObject(i);
             WhetherResult whetherResult = new WhetherResult();
 
             //get name from jason code
-            whetherResult.setName(listJsonObject.getString("name"));
-            //get id from jason code
-            whetherResult.setId(listJsonObject.getInt("id"));
+            JSONObject cityJsonObject = rootObject.getJSONObject("city");
+            whetherResult.setName(cityJsonObject.getString("name"));
             //get date and time from jason code
-            whetherResult.setDt(listJsonObject.getInt("dt"));
+            whetherResult.setDtforecast(listJsonObject.getString("dt_txt"));
             //get icon from jason code
             JSONArray WhetherJsonArray = listJsonObject.getJSONArray("weather");
             JSONObject WhetherJsonObject = WhetherJsonArray.getJSONObject(0);
@@ -106,13 +117,6 @@ public abstract class WhetherGetterTask extends AsyncTask<Void, Void, List<Wheth
             whetherResult.getMain().setPressure(MainJsonObject.getInt("pressure"));
             //get humidity from jason code
             whetherResult.getMain().setHumidity(MainJsonObject.getInt("humidity"));
-            //get sunrise from jason code
-            JSONObject SysJsonObject = listJsonObject.getJSONObject("sys");
-            whetherResult.getSys().setSunrise(SysJsonObject.getLong("sunrise"));
-            //get sunset from jason code
-            whetherResult.getSys().setSunset(SysJsonObject.getLong("sunset"));
-            //get country name from jason code
-            whetherResult.getSys().setCountry(SysJsonObject.getString("country"));
             //get wind speed from jason code
             JSONObject WindJsonObject = listJsonObject.getJSONObject("wind");
             whetherResult.getWind().setSpeed(WindJsonObject.getDouble("speed"));

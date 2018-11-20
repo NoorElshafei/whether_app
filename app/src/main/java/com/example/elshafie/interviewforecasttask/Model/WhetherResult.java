@@ -6,24 +6,35 @@ import java.util.List;
 /**
  * Created by Elshafie on 11/17/2018.
  */
-
+//class for the information of whether
 public class WhetherResult implements Serializable {
-    //private Coord coord;
-    private Weather weather=new Weather();
-    private String base ;
-    private Main main=new Main() ;
-    private int visibility ;
-    private Wind wind=new Wind() ;
-    private Clouds clouds ;
-    private int dt ;
-    private Sys sys=new Sys() ;
-    private int id ;
-    private String name ;
-    private int cod ;
+
+    private Weather weather = new Weather();
+    private String base;
+    private Main main = new Main();
+    private int visibility;
+    private Wind wind = new Wind();
+    private Clouds clouds;
+    private int dt;
+    private String dtforecast;
+    private Sys sys = new Sys();
+    private int id;
+    private String name;
+    private int cod;
+
 
     public WhetherResult() {
+
     }
 
+
+    public String getDtforecast() {
+        return dtforecast;
+    }
+
+    public void setDtforecast(String dtforecast) {
+        this.dtforecast = dtforecast;
+    }
 
     public Weather getWeather() {
         return weather;

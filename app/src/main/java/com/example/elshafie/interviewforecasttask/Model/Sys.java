@@ -5,9 +5,9 @@ package com.example.elshafie.interviewforecasttask.Model;
  */
 
 public class Sys {
-    private int type ;
+    private int type;
     private int id;
-    private double message ;
+    private double message;
     private String country;
     private long sunrise;
     private long sunset;

@@ -9,9 +9,10 @@ import java.text.DecimalFormat;
 public class Main {
     private double temp;
     private int pressure;
-    private int humidity ;
+    private int humidity;
     private double temp_min;
     private double temp_max;
+    private int id1;
 
     public Main() {
     }
@@ -22,10 +23,16 @@ public class Main {
     }
 
 
+    public int getId1() {
+        return id1;
+    }
 
+    public void setId1(int id1) {
+        this.id1 = id1;
+    }
 
     public void setTemp(double temp) {
-        this.temp = temp-273.15;
+        this.temp = temp - 273.15;
     }
 
     public int getPressure() {

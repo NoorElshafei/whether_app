@@ -1,17 +1,23 @@
 package com.example.elshafie.interviewforecasttask;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.elshafie.interviewforecasttask.Common.Common;
 import com.example.elshafie.interviewforecasttask.Model.Weather;
 import com.example.elshafie.interviewforecasttask.Model.WhetherResult;
 import com.squareup.picasso.Picasso;
+
 import java.text.DecimalFormat;
 import java.util.List;
 
@@ -19,11 +25,15 @@ import java.util.List;
  * Created by Elshafie on 11/19/2018.
  */
 
+//adapter of current whether recycler view
 public class AdapterWhether extends RecyclerView.Adapter<AdapterWhether.whetherViewHolder> {
+
     private List<WhetherResult> whetherList;
+    Context mContext;
 
+    public AdapterWhether(Context c) {
+        mContext = c;
 
-    public AdapterWhether() {
     }
 
     public void setWhetherList(List<WhetherResult> whetherList) {
@@ -40,10 +50,10 @@ public class AdapterWhether extends RecyclerView.Adapter<AdapterWhether.whetherV
     }
 
     @Override
-    public void onBindViewHolder(@NonNull whetherViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final whetherViewHolder holder, final int position) {
 
         WhetherResult whetherResult = whetherList.get(position);
-
+        //this statements for show information of current whether after get it from json
         Picasso.with(holder.img_whether_icon.getContext()).load(whetherResult.getWeather().getIcon()).into(holder.img_whether_icon);
         DecimalFormat df = new DecimalFormat("#.##");
         holder.city_name.setText(whetherResult.getName());
@@ -57,6 +67,19 @@ public class AdapterWhether extends RecyclerView.Adapter<AdapterWhether.whetherV
         holder.txt_Country.setText(whetherResult.getSys().getCountry());
         holder.txt_desc.setText(whetherResult.getWeather().getDescription());
 
+
+        //when click on button in current whether
+        holder.btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, Main2Activity.class);
+                intent.putExtra("WhetherResult", position);
+                mContext.startActivity(intent);
+
+            }
+        });
+
+
     }
 
     @Override
@@ -66,11 +89,13 @@ public class AdapterWhether extends RecyclerView.Adapter<AdapterWhether.whetherV
 
     class whetherViewHolder extends RecyclerView.ViewHolder {
         ImageView img_whether_icon;
-        TextView city_name, txt_wind, txt_pressure, txt_humidty, txt_sunrise, txt_sunset, txt_temp, txt_time_date,txt_Country,txt_desc;
+        TextView city_name, txt_wind, txt_pressure, txt_humidty, txt_sunrise, txt_sunset, txt_temp, txt_time_date, txt_Country, txt_desc;
+        Button btn;
+
 
         public whetherViewHolder(View itemView) {
             super(itemView);
-            txt_Country=itemView.findViewById(R.id.Country);
+            txt_Country = itemView.findViewById(R.id.Country);
             img_whether_icon = itemView.findViewById(R.id.Image_Of_Whether);
             city_name = itemView.findViewById(R.id.Name_Of_City);
             txt_wind = itemView.findViewById(R.id.txt_Wind);
@@ -80,7 +105,10 @@ public class AdapterWhether extends RecyclerView.Adapter<AdapterWhether.whetherV
             txt_sunset = itemView.findViewById(R.id.txt_Sunset);
             txt_temp = itemView.findViewById(R.id.Current_temp);
             txt_time_date = itemView.findViewById(R.id.Time_And_Date);
-            txt_desc=itemView.findViewById(R.id.Whether_description);
+            txt_desc = itemView.findViewById(R.id.Whether_description);
+            btn = itemView.findViewById(R.id.More);
+
+
         }
 
     }

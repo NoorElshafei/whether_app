@@ -5,8 +5,8 @@ package com.example.elshafie.interviewforecasttask.Model;
  */
 
 public class Wind {
-    private double speed ;
-    private int deg ;
+    private double speed;
+    private int deg;
 
     public Wind() {
     }

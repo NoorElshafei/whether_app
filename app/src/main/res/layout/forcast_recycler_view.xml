@@ -9,54 +9,54 @@
     android:paddingRight="20dp"
     android:paddingTop="0dp">
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="80dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="Whether in"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/Name_of_city_forecast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="3dp"
+            android:text="city,country"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
 
     <android.support.v7.widget.CardView
         android:id="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-
         card_view:cardElevation="4dp"
         card_view:cardUseCompatPadding="true"
-        card_view:contentPadding="10dp">
+        card_view:contentPadding="10dp"
+        card_view:contentPaddingLeft="40dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
+
+            <TextView
+                android:id="@+id/Time_And_Date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/Name_Of_City"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:text="Name of city"
-                    android:textColor="#757575"
-                    android:textSize="25sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=","
-                    android:textColor="#757575"
-                    android:textSize="25sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/Country"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Country"
-                    android:textColor="#757575"
-                    android:textSize="25sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
+                android:text="Time and date"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -65,12 +65,11 @@
 
                 <TextView
                     android:id="@+id/Current_temp"
-                    android:layout_width="200dp"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
-
-                    android:paddingTop="10dp"
+                    android:paddingTop="5dp"
                     android:text="28.84°C"
-                    android:textSize="45sp"
+                    android:textSize="35sp"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -171,65 +170,7 @@
                             android:text="100%"
                             android:textStyle="bold" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="90dp"
-                            android:text="Last Update:"
-                            android:textStyle="bold" />
 
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="3dp"
-                            android:text="Sunrise:"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/txt_Sunrise"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="5dp"
-                            android:text="11:00"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/Time_And_Date"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="70dp"
-                            android:text="Time and date"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="3dp"
-                            android:text="Sunset:"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/txt_Sunset"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="5dp"
-                            android:text="18:00"
-                            android:textStyle="bold" />
                     </LinearLayout>
 
 
@@ -237,14 +178,7 @@
 
             </LinearLayout>
 
-            <Button
-                android:id="@+id/More"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:text="5 days whether forecast"
 
-                />
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
